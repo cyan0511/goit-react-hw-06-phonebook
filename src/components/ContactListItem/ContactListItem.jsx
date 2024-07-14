@@ -1,14 +1,17 @@
 import css from './ContactListItem.module.css';
 import { useState } from 'react';
 import { clsx } from 'clsx';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsSlice';
 
-export const ContactListItem = ({ contact, deleteContact }) => {
+export const ContactListItem = ({ contact }) => {
+  const dispatch = useDispatch();
   const [isDeleting, setIsDeleting] = useState(false);
   const handleDelete = () => {
     setIsDeleting(true);
 
     setTimeout(() => {
-      deleteContact(contact.id);
+      dispatch(deleteContact(contact.id));
     }, 1200);
   };
 
